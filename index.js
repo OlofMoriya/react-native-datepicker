@@ -103,6 +103,8 @@ class DatePicker extends Component {
   }
 
   getDate(date = this.props.date) {
+    date = new Date(date);
+    date.setHours(4);
     const {mode, minDate, maxDate, format = FORMATS[mode]} = this.props;
 
     // date默认值
@@ -162,7 +164,7 @@ class DatePicker extends Component {
   onDatePicked({action, year, month, day}) {
     if (action !== DatePickerAndroid.dismissedAction) {
       this.setState({
-        date: new Date(year, month, day)
+        date: new Date(year, month, day, 4, 0, 0, 0)
       });
       this.datePicked();
     }
